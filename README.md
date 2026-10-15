@@ -7,7 +7,7 @@ Interaction with undesired molecular targets is one of the reasons why (small mo
 
 However, the exact list of undesired molecular targets is a hard topic, since it may vary greatly depending on the exact condition to be treated and multiple other factors.
 
-Thus, in addition to the complex studies aiming to develop such a list or lists to be applied widely, it is of interest to know what are the molecular targets being studied as potentially safety issues related by the scientiffic community.  
+Thus, in addition to the complex studies aiming to develop such a list or lists (using complex techniques belonging to different approaches) to be applied widely, it is of interest to know what are the molecular targets being studied as potentially safety issues related by the scientiffic community.  
 
 To do that it is possible to simply scan from the list of the articles recently (**01.01.2021 - 15.10.2026** in this cse) published in the scientiffic journals dedicated to the studies of drug safety and development (subject categories, https://www.scimagojr.com/)
 in the search for ones, in which potential connection between the molecular target and certain undesired outcome is unequivocally stated.
