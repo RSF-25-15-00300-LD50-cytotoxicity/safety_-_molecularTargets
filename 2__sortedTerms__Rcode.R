@@ -50,3 +50,6 @@ umap_coordinates <- data_umap$layout |> bind_cols(terms |> select(doc_id)) |>
 
 ## Output
 write_tsv(umap_coordinates, str_glue("{path}terms_sorted.tsv"))
+
+### Looking at the preliminary results (terms_sorted_partiallyRecoded.tsv) it is possible to say that the whole approach is problematic.
+### The way of generating corpus is too much generic, names of molecules should be treated with more care.
