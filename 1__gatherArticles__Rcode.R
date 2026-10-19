@@ -1,7 +1,7 @@
 library(tidyverse)
 ## Input
 path <- "..."
-# List files from AAL
+# List files
 raw_fn <- list.files(path, full.names = TRUE, pattern = "*.csv")
 
 # Read the files and combine them into the single tiible, assuming variable and unknown numbers of rows
