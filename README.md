@@ -57,7 +57,7 @@ in the search for ones, in which potential connection between the molecular targ
 
 Articles' titles should be arranged for the ease of the scanning and it is a task of its own.
 
-Probably it will be better to start with the analysis of words among those (~47015) constituting titles (preliminary results obtained using (topic) dictionaries from Wikipedia and ChEMBL are not fully satisfactory). The plan is as follows:
+Probably it will be better to start with the analysis of words among those (~47015) constituting titles (preliminary results obtained using (topic) dictionaries from Wikipedia and ChEMBL are not fully satisfactory, this is not the problem of the approach definately, but rather consequence of my skill level with regards to this particular problem). The plan is as follows:
 
   - Read the titles of articles
   - Get the list of unique words (word here is the sequence of characters between two spaces OR between the line start and space OR between the space and line end)
