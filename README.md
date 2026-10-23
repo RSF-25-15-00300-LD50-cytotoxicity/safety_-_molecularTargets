@@ -55,6 +55,22 @@ in the search for ones, in which potential connection between the molecular targ
 
 ## The scan of the titles will be conducted manually after sorting, just to get the whole picture of the studies in the field
 
-### Articles' titles should be arranged for the ease of the scanning and it is a task of its own.
+Articles' titles should be arranged for the ease of the scanning and it is a task of its own.
 
-Probably it will be better to start selecting the meaningful words among those (~47015) constituting titles.
+Probably it will be better to start with the analysis of words among those (~47015) constituting titles (preliminary results obtained using (topic) dictionaries from Wikipedia and ChEMBL are not fully satisfactory). The plan is as follows:
+
+  - Read the titles of articles
+  - Get the list of unique words (word here is the sequence of characters between two spaces OR between the line start and space OR between the space and line end)
+  - Describe them as vectors of 3-character fragments and measure lengthes
+  - Divide words into quartiles by lengthes and binarize their belonging
+  - Select the number of descriptors and use them latter to sort words by similarity
+  - Delete / aggregate some words
+  - Use the results to sort the titles 
+
+### Distribution of the lengthes of the words constituiting the articles' titles
+
+Distributions of words' lengthes are given in Figure 1.
+
+![**Figure 1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](word_length__distr.png)
+
+Panel a of Figure 1 represents the full distribution and from it it can be seen that the most of the words are shorter than 30 characters. Panel b of the Figure 1 represents truncated (at 30) distribution, quartiles are marked with red dashed lines (7, 10, 13).
