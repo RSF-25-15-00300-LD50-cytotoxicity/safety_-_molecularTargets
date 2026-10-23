@@ -54,3 +54,7 @@ in the search for ones, in which potential connection between the molecular targ
 ## Articles's titles (25356) were obtained via PubMed, the results were downloaded manually and gathered using R and Tidyverse
 
 ## The scan of the titles will be conducted manually after sorting, just to get the whole picture of the studies in the field
+
+### Articles' titles should be arranged for the ease of the scanning and it is a task of its own.
+
+Probably it will be better to start selecting the meaningful words among those (~47015) constituting titles.
