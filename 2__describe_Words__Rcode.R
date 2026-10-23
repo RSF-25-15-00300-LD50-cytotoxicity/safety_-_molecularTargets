@@ -26,16 +26,17 @@ articles <- read_tsv(str_glue("{path}articles/articles_gathered.tsv")) |> mutate
 intermediate <- articles |> select(title) |> mutate(n_word = str_count(title, " ") + 1)
 longest      <- intermediate |> pull(n_word) |> max()
 words    	 <- tibble(word = intermediate |> select(title) |>
+							   mutate(title = str_to_lower(title)) |>
 							   separate_wider_delim(cols = title, delim = " ", names = rep("x", longest),
 													names_repair = "unique", too_few = "align_start") |>
 							   		mutate_all(str_trim) |>
 							   		unlist()  |>
 							   		unique()) |>
-						filter(!is.na(word)) |>
-						mutate(word = str_trim(word))
+						filter(!is.na(word))
 
 ## Describe words
 words_described_raw <- words |> mutate(nchar = str_length(word)) |>
+							filter(nchar > 2) |>
 							rowwise() |>
 							mutate(descriptor_str = describe_w(word)) |>
 							ungroup()
@@ -43,7 +44,7 @@ words_described_raw <- words |> mutate(nchar = str_length(word)) |>
 hist_length <- ggplot(words_described_raw, aes(nchar)) +
 				geom_histogram(bins = 30, color = "black", fill = "grey90") +
 				ggtitle("a") +
-				scale_y_continuous(limits = c(0, 9000), breaks = c (500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000)) +
+				scale_y_continuous(limits = c(0, 6500), breaks = c (500, 1000, 2000, 3000, 4000, 5000, 6000, 6500)) +
 				scale_x_sqrt(breaks = c(1, 10, 20, 30, 60, 90, 120)) +
 				theme_classic() +
 				theme(plot.title = element_text(hjust = 1))
@@ -52,11 +53,11 @@ words_described_raw_lim <- words_described_raw |> filter(nchar < 31)
 wdl_quant <- quantile(words_described_raw_lim |> pull(nchar), probs = c(.25, .5, 0.75), names = TRUE, type = 7)
 hist_length_lim <- ggplot(words_described_raw_lim, aes(nchar)) +
 				geom_histogram(bins = 30, color = "black", fill = "grey90") +
-				geom_vline(xintercept = wdl_quant[1], color = "#800000ff", linetype = "dashed", size = 1.25) +
-				geom_vline(xintercept = wdl_quant[2], color = "#800000ff", linetype = "dashed", size = 1.25) +
-				geom_vline(xintercept = wdl_quant[3], color = "#800000ff", linetype = "dashed", size = 1.25) +
+				geom_vline(xintercept = wdl_quant[1], color = "#800000ff", linetype = "dashed", linewidth = 1.25) +
+				geom_vline(xintercept = wdl_quant[2], color = "#800000ff", linetype = "dashed", linewidth = 1.25) +
+				geom_vline(xintercept = wdl_quant[3], color = "#800000ff", linetype = "dashed", linewidth = 1.25) +
 				ggtitle("b") +
-				scale_y_continuous(limits = c(0, 9000), breaks = c (500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000)) +
+				scale_y_continuous(limits = c(0, 6500), breaks = c (500, 1000, 2000, 3000, 4000, 5000, 6000, 6500)) +
 				scale_x_continuous(limits = c(0, 31), breaks = c(1, 10, 20, 30)) +
 				theme_classic() +
 				theme(plot.title = element_text(hjust = 1))
@@ -73,12 +74,14 @@ wd_processing <- words_described_raw |> mutate(is_long     = if_else(nchar > 30,
 # Binarize the fragment descriptors
 wd_processing <- wd_processing |> mutate(ndescr = str_count(descriptor_str, "\t") + 1)
 max_descr     <- wd_processing |> pull(ndescr) |> max()
-wd_binarized  <- wd_processing |> select(word, nchar, ndescr, is_short, is_shorter, is_neither, is_longer, is_long, descriptor_str) |>
+wd_binarized  <- wd_processing |> select(word, descriptor_str, nchar, ndescr, is_short, is_shorter, is_neither, is_longer, is_long) |>
 								  mutate(string_description = descriptor_str) |>
-						          separate_longer_delim(cols = descriptor_str, delim = "\t") |>
-								  pivot_wider(names_from = descriptor_str, values_from = descriptor_str) |>
+						          separate_longer_delim(cols = string_description, delim = "\t") |>
+								  pivot_wider(names_from = string_description, values_from = string_description) |>
 								  mutate(across(!word & !nchar & !ndescr & !is_short & !is_shorter
-								  	& !is_neither & !is_longer & !is_long & !string_description, ~if_else(is.na(.), 0, 1)))
+								  	& !is_neither & !is_longer & !is_long & !descriptor_str, ~if_else(is.na(.), 0, 1)))
 
 # Save the current results
 write_tsv(wd_binarized, str_glue("{path}data/words_described.tsv"))
+
+## Select descriptor subset for each length category
