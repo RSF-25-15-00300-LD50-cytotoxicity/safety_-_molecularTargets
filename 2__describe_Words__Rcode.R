@@ -76,12 +76,13 @@ wd_processing <- wd_processing |> mutate(ndescr = str_count(descriptor_str, "\t"
 max_descr     <- wd_processing |> pull(ndescr) |> max()
 wd_binarized  <- wd_processing |> select(word, descriptor_str, nchar, ndescr, is_short, is_shorter, is_neither, is_longer, is_long) |>
 								  mutate(string_description = descriptor_str) |>
+								  mutate(descriptor_str     = str_replace_all(descriptor_str, "\t", ", ")) |>
 						          separate_longer_delim(cols = string_description, delim = "\t") |>
 								  pivot_wider(names_from = string_description, values_from = string_description) |>
 								  mutate(across(!word & !nchar & !ndescr & !is_short & !is_shorter
 								  	& !is_neither & !is_longer & !is_long & !descriptor_str, ~if_else(is.na(.), 0, 1)))
-
+wd_names <- wd_names <- c("word", "descriptor_string", "n_char", "n_descr", "is_short", "is_shorter", "is_neither", "is_longer", "is_long", rep("descriptor", 37421))
+names(wd_binarized) <- wd_names
+wd_binarized <- wd_binarized |> repair_names(prefix = "descriptor", sep = "_")
 # Save the current results
 write_tsv(wd_binarized, str_glue("{path}data/words_described.tsv"))
-
-## Select descriptor subset for each length category
