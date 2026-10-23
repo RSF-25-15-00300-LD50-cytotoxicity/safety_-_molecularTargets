@@ -81,6 +81,4 @@ wd_binarized  <- wd_processing |> select(word, nchar, ndescr, is_short, is_short
 								  	& !is_neither & !is_longer & !is_long & !string_description, ~if_else(is.na(.), 0, 1)))
 
 # Save the current results
-write_tsv(wd_binarized, str_glue("{path}data/titles_described.tsv"))
-
-# The resulting file is huge, I will not post it; this is intermediate data.
+write_tsv(wd_binarized, str_glue("{path}data/words_described.tsv"))
