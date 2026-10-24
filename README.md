@@ -73,4 +73,4 @@ Distributions of words' lengthes are given in Figure 1.
 
 ![**Figure 1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](word_length__distr.png)
 
-Panel a of Figure 1 represents the full distribution and from it it can be seen that the most of the words are shorter than 30 characters. Panel b of the Figure 1 represents truncated (at 30) distribution, quartiles are marked with red dashed lines (7, 10, 13).
+Panel a of Figure 1 represents the full distribution and from it it can be seen that the most of the words are shorter than 30 characters. Panel b of the Figure 1 represents truncated (at 30) distribution, .25, .5 and .75 are marked with red dashed lines (7, 10, 13 characters).
