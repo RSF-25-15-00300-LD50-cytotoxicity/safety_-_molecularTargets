@@ -32,12 +32,22 @@ words    	 <- tibble(word = intermediate |> select(title) |>
 							   		mutate_all(str_trim) |>
 							   		unlist()  |>
 							   		unique()) |>
-						filter(!is.na(word))
+						filter(!is.na(word))  |>
+						mutate(word = str_trim(word)) |>
+						rowwise() |>
+					  	mutate(word_trimmed = str_replace(word, "^[\\\'$&*+-/:<|×–≥]", "")) |>
+					  	mutate(word_trimmed = str_replace(word, "[\\\'!%&*+,-./:;?|©®×–†…⁺™]$", "")) |>
+					  	ungroup() |>
+					  	rename(word_raw = word, word = word_trimmed) |>
+						mutate(nchar = str_length(word)) |>
+						filter(nchar > 2) |>
+						#detect if beyond ASCII, SEE: https://stackoverflow.com/questions/78751908/using-r-how-can-i-detect-if-a-string-includes-a-unicode-character
+						rowwise() |>
+						mutate(is_ascii = if_else(any(str_detect(word, "[^\\x00-\\x7F]")), 0, 1)) |>
+						ungroup()
 
 ## Describe words
-words_described_raw <- words |> mutate(nchar = str_length(word)) |>
-							filter(nchar > 2) |>
-							rowwise() |>
+words_described_raw <- words |> rowwise() |>
 							mutate(descriptor_str = describe_w(word)) |>
 							ungroup()
 # Assess the distribution of lengthes
@@ -66,22 +76,24 @@ hist_plot <- hist_length + hist_length_lim
 hist_plot
 ggsave(str_glue("{path}pics/word_length__distr.png"), hist_plot, scale = 1.25, width = 7, height = 4, units = "in", dpi = 300)
 # Binarize the description of lengthes
-wd_processing <- words_described_raw |> mutate(is_long     = if_else(nchar > 30, 1, 0),
-											   is_short    = if_else(nchar < 8, 1, 0),
-											   is_longer   = if_else(nchar > 13 & nchar < 31, 1, 0),
-											   is_shorter  = if_else(nchar > 7 & nchar < 11, 1, 0),
+wd_processing <- words_described_raw |> mutate(is_longest     = if_else(nchar > 30, 1, 0),
+											   is_shortest    = if_else(nchar < 8, 1, 0),
+											   is_long   = if_else(nchar > 13 & nchar < 31, 1, 0),
+											   is_short  = if_else(nchar > 7 & nchar < 11, 1, 0),
 											   is_neither  = if_else(nchar > 10 & nchar < 14, 1, 0))
 # Binarize the fragment descriptors
 wd_processing <- wd_processing |> mutate(ndescr = str_count(descriptor_str, "\t") + 1)
 max_descr     <- wd_processing |> pull(ndescr) |> max()
-wd_binarized  <- wd_processing |> select(word, descriptor_str, nchar, ndescr, is_short, is_shorter, is_neither, is_longer, is_long) |>
+wd_binarized  <- wd_processing |> select(word_raw, word, descriptor_str, nchar, ndescr, is_ascii, is_shortest, is_short, is_neither, is_long, is_longest) |>
 								  mutate(string_description = descriptor_str) |>
 								  mutate(descriptor_str     = str_replace_all(descriptor_str, "\t", ", ")) |>
 						          separate_longer_delim(cols = string_description, delim = "\t") |>
 								  pivot_wider(names_from = string_description, values_from = string_description) |>
-								  mutate(across(!word & !nchar & !ndescr & !is_short & !is_shorter
-								  	& !is_neither & !is_longer & !is_long & !descriptor_str, ~if_else(is.na(.), 0, 1)))
-wd_names <- wd_names <- c("word", "descriptor_string", "n_char", "n_descr", "is_short", "is_shorter", "is_neither", "is_longer", "is_long", rep("descriptor", 37421))
+								  mutate(across(!word_raw & !word & !nchar & !ndescr & !is_ascii & !is_shortest & !is_short
+								  	& !is_neither & !is_long & !is_longest & !descriptor_str, ~if_else(is.na(.), 0, 1)))
+n_descr  <- ncol(wd_binarized) - 11
+wd_names <- wd_names <- c("word_raw", "word", "descriptor_string", "n_char", "n_descr", "is_ascii",
+						  "is_shortest", "is_short", "is_neither", "is_long", "is_longest", rep("descriptor", n_descr))
 names(wd_binarized) <- wd_names
 wd_binarized <- wd_binarized |> repair_names(prefix = "descriptor", sep = "_")
 # Save the current results
