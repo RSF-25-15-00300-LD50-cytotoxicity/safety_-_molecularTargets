@@ -35,16 +35,25 @@ words    	 <- tibble(word = intermediate |> select(title) |>
 						filter(!is.na(word))  |>
 						mutate(word = str_trim(word)) |>
 						rowwise() |>
-					  	mutate(word_trimmed = str_replace(word, "^[\\\'$&*+-/:<|×–≥]", "")) |>
-					  	mutate(word_trimmed = str_replace(word, "[\\\'!%&*+,-./:;?|©®×–†…⁺™]$", "")) |>
+					  	mutate(word_trimmed = str_replace(word, "^[\\\'$&*+-/:<|×–≥]", "") |> str_trim()) |>
+					  	mutate(lchar = str_extract(word, ".$")) |>
+					  	mutate(word_trimmed = if_else(lchar %in% c("'", "-", "!", "%", "*", ",", ".", "/", ":", ";", "?", "+", "⁺", "©", "®", "…", "†"),
+					  									str_sub(word_trimmed, -2), word_trimmed)) |>
 					  	ungroup() |>
-					  	rename(word_raw = word, word = word_trimmed) |>
+					  	rename(word_raw = word) |>
+					  	rename(word = word_trimmed) |>
 						mutate(nchar = str_length(word)) |>
 						filter(nchar > 2) |>
 						#detect if beyond ASCII, SEE: https://stackoverflow.com/questions/78751908/using-r-how-can-i-detect-if-a-string-includes-a-unicode-character
 						rowwise() |>
 						mutate(is_ascii = if_else(any(str_detect(word, "[^\\x00-\\x7F]")), 0, 1)) |>
 						ungroup()
+
+# Check first char
+#fchar <- words |> mutate(fchar = str_extract(word, "^.")) |> pull(fchar) |> unique() |> sort()
+lchar <- words |> pull(lchar) |> unique() |> sort()
+#fchar
+lchar
 
 ## Describe words
 words_described_raw <- words |> rowwise() |>
