@@ -75,3 +75,18 @@ Distributions of words' lengthes are given in Figure 1.
 ![**Figure 1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](word_length__distr.png)
 
 Panel a of Figure 1 represents the full distribution and from it it can be seen that the most of the words are shorter than 30 characters. Panel b of the Figure 1 represents truncated (at 30) distribution, .25, .5 and .75 are marked with red dashed lines (7, 10, 13 characters).
+
+### Label words from stratified list
+
+It was decided to label words as
+ - Entity: word, which could be used in titles of the selected articles to describe some object or subject of interest (target, diseases, drug, etc.).
+ - Action: word, which could be used in titles of the selected articles to describe something which was done by someone / something and may be of interest (e.g. inhibition or activation of molecular target).
+ - Process: word, which could be used in titles of the selected articles to describe something which sort of flows naturally and may be of interest (e.g. biological process).
+ - Property: characteristic of entity / action / process and may be of interest.
+ - Safety: any word, which could be directly related to the safety concerns.
+ - Certainty: any word, which could describe the degree of certainty in something.
+ - Cause: any word, which could describe the causal relationship.
+
+The idea is to use this results to create custom stop list, i.e. list of words, which could be excluded from the further analysis; on condition that they maybe out of interest (have few or have no labels).
+
+#### Shortest words
