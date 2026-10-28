@@ -63,9 +63,10 @@ Probably it will be better to start with the analysis of words among those (~470
   - Get the list of unique words (word here is the sequence of characters between two spaces OR between the line start and space OR between the space and line end)
   - Describe them as vectors of 3-character fragments and measure lengthes
   - Divide words into quartiles by lengthes and binarize their belonging
-  - Select the number of descriptors and use them latter to sort words by similarity
-  - Delete / aggregate some words
-  - Use the results to sort the titles 
+  - Select the number of descriptors and use them latter to sort words by similarity considering the length's cohorts (shortest, short, neither, long, longest)
+  - Label words somehow
+  - Exclude not interesting (in this context) words and their descriptors
+  - Use the results to sort the titles
 
 ### Distribution of the lengthes of the words constituiting the articles' titles
 
