@@ -87,6 +87,13 @@ It was decided to label words as
  - Certainty: any word, which could describe the degree of certainty in something.
  - Cause: any word, which could describe the causal relationship.
 
-The idea is to use this results to create custom stop list, i.e. list of words, which could be excluded from the further analysis; on condition that they maybe out of interest (have few or have no labels).
+The idea is to use this results to create custom stop list, i.e. list of words, which could be excluded from the further analysis; on condition that they maybe out of interest (have few or have no labels) or just use the results as additional descriptors.
 
 #### Shortest words
+
+Words having length lesser than 8 characters were manually categorized, the results are given in Figure 2.
+
+![**Figure 1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](shortest__categories.png)
+
+As it can be seen from Figure 2 the most of these words are some entities (biological targets, chemical compounds, etc.), also, there are only few words directly related to safety. The whole process is quite tedious and error prone, thus some automation is needed. The most simple option is to use dictionaries from various sources. Also, the direct usage of some neural net may be even easier, however, some ground level for comparison is still needed in this case (titles are special matter, e.g. [https://royalsocietypublishing.org/rspb/article/291/2027/20241222/105261/Title-abstract-and-keywords-a-practical-guide-to], [https://explore.plos.org/author-resources/how-to-write-a-compelling-title]). 
+
