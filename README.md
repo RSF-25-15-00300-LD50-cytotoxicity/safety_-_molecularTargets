@@ -124,3 +124,6 @@ The following ontologies are seems to be relevant for this task:
 - The Biomarker Ontology, https://bioportal.bioontology.org/ontologies/BMONT
 - The Drug Ontology, https://bioportal.bioontology.org/ontologies/DRON
 - The Drug-Drug Interactions Ontology, https://bioportal.bioontology.org/ontologies/DINTO
+
+  Such a long list does not mean that all these ontologies are needed, since they may have intersected terms, however, at this stage - OK.
+  Also, valuable vocabularies representing already adapted ontologies and other sources may be obtained from databases describing molecules, such as ChEMBL [https://www.ebi.ac.uk/chembl/].
