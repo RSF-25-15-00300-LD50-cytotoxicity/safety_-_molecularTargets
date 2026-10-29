@@ -95,5 +95,32 @@ Words having length lesser than 8 characters were manually categorized, the resu
 
 ![**Figure 1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](shortest__categories.png)
 
-As it can be seen from Figure 2 the most of these words are some entities (biological targets, chemical compounds, etc.), also, there are only few words directly related to safety. The whole process is quite tedious and error prone, thus some automation is needed. The most simple option is to use dictionaries from various sources. Also, the direct usage of some neural net may be even easier, however, some ground level for comparison is still needed in this case (titles are special matter, e.g. [https://royalsocietypublishing.org/rspb/article/291/2027/20241222/105261/Title-abstract-and-keywords-a-practical-guide-to], [https://explore.plos.org/author-resources/how-to-write-a-compelling-title]). 
+As it can be seen from Figure 2 the most of these words are some entities (biological targets, chemical compounds, etc.), also, there are only few words directly related to safety. The whole process is quite tedious and error prone, thus some automation is needed. The most simple option is to use dictionaries from various sources. Also, the direct usage of some neural net may be even easier, however, ground level for comparison is still needed in this case (titles are special matter, e.g. [https://royalsocietypublishing.org/rspb/article/291/2027/20241222/105261/Title-abstract-and-keywords-a-practical-guide-to], [https://explore.plos.org/author-resources/how-to-write-a-compelling-title]). One of the established ways to get vocabularies, where words are mapped to some topic, is to work through an ontologies; which are, hopefully, are well (for this task) represented on 
 
+https://bioportal.bioontology.org/
+
+The following ontologies are seems to be relevant for this task:
+
+- Chemical Entities of Biological Interest Ontology, https://bioportal.bioontology.org/ontologies/CHEBI
+- An ontology for experimental actions, https://bioportal.bioontology.org/ontologies/EXACT
+- Bioentities, https://bioportal.bioontology.org/ontologies/BE
+- Drug Target Ontology, https://bioportal.bioontology.org/ontologies/DTO
+- Experimental Factor Ontology, https://bioportal.bioontology.org/ontologies/EFO
+- Hierarchical Event Descriptors, https://bioportal.bioontology.org/ontologies/HED
+- Toxic Process Ontology, https://bioportal.bioontology.org/ontologies/TXPO
+- Biological Pathway Taxonomy, https://bioportal.bioontology.org/ontologies/BPT
+- Pathway Ontology, https://bioportal.bioontology.org/ontologies/PW
+- Interaction Network Ontology, https://bioportal.bioontology.org/ontologies/INO
+- Evidence Graph Ontology, https://bioportal.bioontology.org/ontologies/EVI
+- Molecular Interaction Map, https://bioportal.bioontology.org/ontologies/MIM
+- WikiPathways, https://bioportal.bioontology.org/ontologies/WIKIPATHWAYS
+- Systems Chemical Biology and Chemogenomics Ontology, https://bioportal.bioontology.org/ontologies/CHEMBIO
+- Adverse Event Reporting Ontology, https://bioportal.bioontology.org/ontologies/AERO
+- Molecular Interactions, https://bioportal.bioontology.org/ontologies/MI
+- Ontology for Drug Discovery Investigations, https://bioportal.bioontology.org/ontologies/DDI
+- Ontology for Biomedical Investigations, https://bioportal.bioontology.org/ontologies/OBI
+- Ontology of Adverse Events, https://bioportal.bioontology.org/ontologies/OAE
+- Ontology of Drug Adverse Events, https://bioportal.bioontology.org/ontologies/ODAE
+- The Biomarker Ontology, https://bioportal.bioontology.org/ontologies/BMONT
+- The Drug Ontology, https://bioportal.bioontology.org/ontologies/DRON
+- The Drug-Drug Interactions Ontology, https://bioportal.bioontology.org/ontologies/DINTO
