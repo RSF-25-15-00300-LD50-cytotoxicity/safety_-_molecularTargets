@@ -92,7 +92,7 @@ The idea is to use this results to create custom stop list, i.e. list of words, 
 #### Initial labeling using EBI OLS
 
 EMBL-EBI (The European Molecular Biology **Laboratory**'s European Bioinformatics **Institute**; https://www.ebi.ac.uk/) has multiple services and sources of harmonized auxilliary data aimed to help to deal with the new data of biological experiments and beyond in consistent manner.
-What is important in the context of this work they have **ontologies** (https://en.wikipedia.org/wiki/Ontology), which can be defined here as **tools being used to describe something applying standardized terminology and relations between terms**, which I see ~ as follows:
+What is important in the context of this work they have **ontologies** ([https://en.wikipedia.org/wiki/Ontology](https://en.wikipedia.org/wiki/Ontology_(information_science))), which can be defined here as **tools being used to describe something applying standardized terminology and relations between terms**, which I see ~ as follows:
  - There is a story about flower growing and we want to describe it in the way machine can understand
  - We take ontology of flowers and ontology of growth
  - We search matched terms from these ontologies in the text
