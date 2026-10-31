@@ -9,7 +9,7 @@ However, the exact list of undesired molecular targets is a hard topic, since it
 
 Thus, in addition to the complex studies aiming to develop such a list or lists (using complex techniques belonging to different approaches) to be applied widely, it is of interest to know what are the molecular targets being studied as potentially safety issues related by the scientiffic community.  
 
-To do that it is possible to simply scan from the list of the articles recently (**01.01.2021 - 15.10.2026** in this cse) published in the scientiffic journals dedicated to the studies of drug safety and development (subject categories, https://www.scimagojr.com/)
+To do that it is possible to simply scan the list of the articles recently (**01.01.2021 - 15.10.2026** in this cse) published in the scientiffic journals dedicated to the studies of drug safety and development (subject categories, https://www.scimagojr.com/)
 in the search for ones, in which potential connection between the molecular target and certain undesired outcome is unequivocally stated.
 
 
@@ -88,6 +88,29 @@ It was decided to label words as
  - Cause: any word, which could describe the causal relationship.
 
 The idea is to use this results to create custom stop list, i.e. list of words, which could be excluded from the further analysis; on condition that they maybe out of interest (have few or have no labels) or just use the results as additional descriptors.
+
+#### Initial labeling using EBI OLS
+
+EMBL-EBI (The European Molecular Biology **Laboratory**'s European Bioinformatics **Institute**; https://www.ebi.ac.uk/) has multiple services and sources of harmonized auxilliary data aimed to help to deal with the new data of biological experiments and beyond in consistent manner.
+What is important in the context of this work they have **ontologies** (https://en.wikipedia.org/wiki/Ontology), which can be defined here as **tools being used to describe something applying standardized terminology and relations between terms**, which I see ~ as follows:
+ - There is a story about flower growing and we want to describe it in the way machine can understand
+ - We take ontology of flowers and ontology of growth
+ - We search matched terms from these ontologies in the text
+ - We found name of the flower and, lets say, its color/form/size both in ontologies and text
+ - In flower ontology we find more info about the flower having such a name: it spicies, etc. and what is important a link to the growth ontology for this particular spicies of flower
+ - Using growth ontology for this flower we can find more: its color/form/size at different stages of development
+ - Using simple logic from flower name and its color/form/size and expected color/form/size at different stages of development we can deduce its age
+ - And now we can pass to machine for further processing even more info than was in the original text, however, some of it will be deduced.
+This is exactly what we need to do with articles' titles to find something interesting about preclinical safety asessement being studied in the last 5 years.
+However, such an approach has limitation: a) we can find only those things, which are already in ontology and b) they should be written in the text in the same way as it is done in ontlogy; c) some info will be deduced: it will describe not the real text at hand but this text in the context of logic coded in the ontology being used.
+It is possible to mitigate these limitations in this task:
+   a) we can re-check the text with labeled words and add smth manually - it will be much easier than deal with the totally unlabeled text (approach has its own limitations, but it is needed to stop doing things at some point)
+   b) EBI's OLS services use learned embeddings to represent terms
+   c) in this task not so important limitation, since the results will be re-checked to mitigate a) (no full automation in this task).
+
+On the technical side: OLS has API (automated programming access), thus it is possible to query it via the Internet:
+https://www.ebi.ac.uk/ols4/api-docs
+Responsible usage of API is the key, resources are always limited.
 
 #### Shortest words
 
