@@ -70,24 +70,11 @@ Probably it will be better to start with the analysis of words among those (~470
 
 ### Distribution of the lengthes of the words constituiting the articles' titles
 
-Distributions of words' lengthes are given in Figure 1.
+Distributions of words' lengthes are given in Figure A1.
 
-![**Figure 1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](word_length__distr.png)
+![**Figure A1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](word_length__distr.png)
 
-Panel a of Figure 1 represents the full distribution and from it it can be seen that the most of the words are shorter than 30 characters. Panel b of the Figure 1 represents truncated (at 30) distribution, .25, .5 and .75 are marked with red dashed lines (7, 10, 13 characters).
-
-### Label words from stratified list
-
-It was decided to label words as
- - Entity: word, which could be used in titles of the selected articles to describe some object or subject of interest (target, diseases, drug, etc.).
- - Action: word, which could be used in titles of the selected articles to describe something which was done by someone / something and may be of interest (e.g. inhibition or activation of molecular target).
- - Process: word, which could be used in titles of the selected articles to describe something which sort of flows naturally and may be of interest (e.g. biological process).
- - Property: characteristic of entity / action / process and may be of interest.
- - Safety: any word, which could be directly related to the safety concerns.
- - Certainty: any word, which could describe the degree of certainty in something.
- - Cause: any word, which could describe the causal relationship.
-
-The idea is to use this results to create custom stop list, i.e. list of words, which could be excluded from the further analysis; on condition that they maybe out of interest (have few or have no labels) or just use the results as additional descriptors.
+Panel a of Figure A1 represents the full distribution and from it it can be seen that the most of the words are shorter than 30 characters. Panel b of the Figure A1 represents truncated (at 30) distribution, .25, .5 and .75 are marked with red dashed lines (7, 10, 13 characters).
 
 #### Initial labeling using EBI OLS
 
@@ -112,13 +99,45 @@ On the technical side: OLS has API (automated programming access), thus it is po
 https://www.ebi.ac.uk/ols4/api-docs
 Responsible usage of API is the key, resources are always limited.
 
+Intial labeling using EBI's text tager' API, see the 1-1__tagTitles__Rcode.R in this repo.
+At the first glance the results are promising more than 150k matched terms were found, about 1.5k of them are from the txpo ontology, which describes toxic processes.
+However, there are some limitations: UTF encoding still should be taken with caution. Both R and Text Tagger get UTF characters right, so the problem is somewhere in between: postions of the percieved terms are different while using R and Text Tagger (probably R and Text Tagger count symbols / characters using different rules). It is problematic for the task, so I switched to ASCII. Such an approach has its own problems: for example, p38α turns into p38, which are totally different proteins. Fortunately, it is not the task here to get the right protein, the task is to get label, that this word probably describes protein, so, for now it is OK.
+Another difficulty is matching short words in text to longer terms from ontologies, even using learned embedding there is no 100% guarantee that the match will be correct.
+
+Figure B1 shows the distribution of the ratios of lengthes (X axis) of matches in text and found terms, numbers of corresponding cases are given on Y axis.
+
+![**Figure B1.** Distribution of ratios of lengthes of the terms found in articles and terms from ontologies.](lengthes_props.png)
+
+As it can be seen from Figure B1 cases where length of the term found in title equal to the ontology term prevail, which is good for the task.
+
+Figure B2 shows the distribution of times, when the term from the particular ontology was found.
+
+![**Figure B2.** Distribution of times, when the term from the particular ontology was found.](ontologies_in_all.png)
+
+As it can be seen from the Figure B2 TXPO ontology (describes toxic processes) takes tenth place (~ 1.5k terms vs >75k terms from the NCIT).
+
+All in all, these results speak in favour of reconsidering the initial strategy: instead of manually labeling distinct words stratified by length, it is probably will be both easier and more fruitful to work with the most reliable labels obtained via Text Tager's API (long enough and providing exact match), since there are so many of them.
+
+### Label words from stratified list
+
+It was decided to label words as
+ - Entity: word, which could be used in titles of the selected articles to describe some object or subject of interest (target, diseases, drug, etc.).
+ - Action: word, which could be used in titles of the selected articles to describe something which was done by someone / something and may be of interest (e.g. inhibition or activation of molecular target).
+ - Process: word, which could be used in titles of the selected articles to describe something which sort of flows naturally and may be of interest (e.g. biological process).
+ - Property: characteristic of entity / action / process and may be of interest.
+ - Safety: any word, which could be directly related to the safety concerns.
+ - Certainty: any word, which could describe the degree of certainty in something.
+ - Cause: any word, which could describe the causal relationship.
+
+The idea is to use this results to create custom stop list, i.e. list of words, which could be excluded from the further analysis; on condition that they maybe out of interest (have few or have no labels) or just use the results as additional descriptors.
+
 #### Shortest words
 
-Words having length lesser than 8 characters were manually categorized, the results are given in Figure 2.
+Words having length lesser than 8 characters were manually categorized, the results are given in Figure A2.
 
-![**Figure 1.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](shortest__categories.png)
+![**Figure A2.** Distribution of lengthes of word constituiting titles of the articles selected for this study.](shortest__categories.png)
 
-As it can be seen from Figure 2 the most of these words are some entities (biological targets, chemical compounds, etc.), also, there are only few words directly related to safety. The whole process is quite tedious and error prone, thus some automation is needed. The most simple option is to use dictionaries from various sources. Also, the direct usage of some neural net may be even easier, however, ground level for comparison is still needed in this case (titles are special matter, e.g. [https://royalsocietypublishing.org/rspb/article/291/2027/20241222/105261/Title-abstract-and-keywords-a-practical-guide-to], [https://explore.plos.org/author-resources/how-to-write-a-compelling-title]). One of the established ways to get vocabularies, where words are mapped to some topic, is to work through an ontologies; which are, hopefully, are well (for this task) represented on 
+As it can be seen from Figure A2 the most of these words are some entities (biological targets, chemical compounds, etc.), also, there are only few words directly related to safety. The whole process is quite tedious and error prone, thus some automation is needed. The most simple option is to use dictionaries from various sources. Also, the direct usage of some neural net may be even easier, however, ground level for comparison is still needed in this case (titles are special matter, e.g. [https://royalsocietypublishing.org/rspb/article/291/2027/20241222/105261/Title-abstract-and-keywords-a-practical-guide-to], [https://explore.plos.org/author-resources/how-to-write-a-compelling-title]). One of the established ways to get vocabularies, where words are mapped to some topic, is to work through an ontologies; which are, hopefully, are well (for this task) represented on 
 
 https://bioportal.bioontology.org/
 
