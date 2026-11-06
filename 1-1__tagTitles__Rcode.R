@@ -1,11 +1,18 @@
 library(tidyverse)
 library(httr2)
+library(stringi)
 
+#red delete special chars like NBSP
 ## Input
-path      <- ".../"
-input     <- str_glue("{path}articles/articles_gathered_titles.tsv")
-output    <- str_glue("{path}data/articles_titles_ontologies.tsv")
-articles  <- read.delim(input, header = FALSE, fileEncoding = "UTF-16LE", sep = "\t")
+path       <- ".../"
+input      <- str_glue("{path}articles/articles_gathered_titles.tsv")
+output     <- str_glue("{path}data/articles_titles_ontologies__v2.tsv")
+articles   <- read.delim(input, header = FALSE, fileEncoding = "UTF-16LE", sep = "\t") |>
+												 mutate(V1 = str_replace_all(V1, "\"", "")) |>
+												 mutate(V1 = str_replace_all(V1, " ", " ")) |>
+												 mutate(V1 = str_replace_all(V1, " ", " ")) |>
+												 mutate(V1 = gsub("[^\x01-\x7F]", "", V1))
+
 
 ## Prepare the POST request to annotate the titles.
 # Considering that external API will be quered, it is important to have some limits
@@ -76,7 +83,10 @@ articles  <- read.delim(input, header = FALSE, fileEncoding = "UTF-16LE", sep = 
 # Vaccine Ontology																VO
 # Experimental condition ontology													XCO
 # HUPO-PSI cross-linking and derivatization reagents controlled vocabulary		XLMOD
+# The Unified Phenotype Ontology 									UPHENO
+# NCI Thesaurus																		NCIT
 # Divide the data into chunks of 50 and tag the corresponding titles
+
 chunked_articles   <- articles |> mutate(id = row_number()) |>
 					    	group_by(chunk_id = ceiling(row_number() / 100)) |>
 							nest() |>
@@ -86,7 +96,7 @@ results <- tibble(text = rep(NA, nrow(chunked_articles)), pos = rep(NA, nrow(chu
 	              labels = rep(NA, nrow(chunked_articles)), ontologies = rep(NA, nrow(chunked_articles)))
 
 ## Actually get the data
-the_link       <- "https://www.ebi.ac.uk/ols4/api/v2/tag_text?ontologyId=aeo&ontologyId=aio&ontologyId=aro&ontologyId=bao&ontologyId=bmont&ontologyId=bto&ontologyId=cco&ontologyId=cdao&ontologyId=chebi&ontologyId=cheminf&ontologyId=chiro&ontologyId=chmo&ontologyId=cio&ontologyId=cl&ontologyId=clo&ontologyId=cmpo&ontologyId=cbo&ontologyId=dron&ontologyId=disdriv&ontologyId=dideo&ontologyId=efo&ontologyId=exo&ontologyId=gexo&ontologyId=mesh&ontologyId=mamo&ontologyId=mod&ontologyId=mmo&ontologyId=mi&ontologyId=ncbitaxon&ontologyId=ms&ontologyId=mondo&ontologyId=obi&ontologyId=oae&ontologyId=ogms&ontologyId=phipo&ontologyId=symp&ontologyId=vario&ontologyId=txpo&ontologyId=wikipathways&ontologyId=vo&ontologyId=xco&ontologyId=xlmod&minLength=3&includeSubstrings=false&includeObsoleteEntities=false&tag_text=1"
+the_link       <- "https://www.ebi.ac.uk/ols4/api/v2/tag_text?ontologyId=aeo&ontologyId=aio&ontologyId=aro&ontologyId=bao&ontologyId=bmont&ontologyId=bto&ontologyId=cco&ontologyId=cdao&ontologyId=chebi&ontologyId=cheminf&ontologyId=chiro&ontologyId=chmo&ontologyId=cio&ontologyId=cl&ontologyId=clo&ontologyId=cmpo&ontologyId=cbo&ontologyId=dron&ontologyId=disdriv&ontologyId=dideo&ontologyId=efo&ontologyId=exo&ontologyId=gexo&ontologyId=mesh&ontologyId=mamo&ontologyId=mod&ontologyId=mmo&ontologyId=mi&ontologyId=ncbitaxon&ontologyId=ms&ontologyId=mondo&ontologyId=obi&ontologyId=oae&ontologyId=ogms&ontologyId=phipo&ontologyId=symp&ontologyId=vario&ontologyId=txpo&ontologyId=wikipathways&ontologyId=vo&ontologyId=xco&ontologyId=xlmod&ontologyId=ncit&ontologyId=upheno&delimiters=%20%7C%20&minLength=3&includeSubstrings=false&includeObsoleteEntities=false&tag_text=1"
 n_times_waited <- 0
 t_start <- Sys.time()
 for (i in seq(1:nrow(results))) {
