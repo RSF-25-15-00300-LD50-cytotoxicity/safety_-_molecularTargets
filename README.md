@@ -75,7 +75,15 @@ Such an approach will allow to consider both simple similarity of the articles' 
 
 At this point it is important to assess the distribution of article titles' lengthes (number of characters and number of words) and lengthes of the words constituiting them, since it will provides some insights into the optimal lengthes of descriptors to study further.
 
-- 25355 articles' titles were loaded into R
+- 25355 articles' titles were loaded into R to be processed with Tidyverse
+- Unicode caharacters were deleted
+- Distributions of article titles' lengthes were obtained and plotted using ggplot2, see Figure 1.
+
+![**Figure 1.** Distribution of article titles' lengthes.](1__length_distr.png)
+
+
+## The following text corresponds to the earlier attempts and will be reconsidered.
+
 
 Probably it will be better to start with the analysis of words among those (~47015) constituting titles (preliminary results obtained using (topic) dictionaries from Wikipedia and ChEMBL are not fully satisfactory, this is not the problem of the approach definately, but rather consequence of my skill level with regards to this particular problem). The plan is as follows:
 
