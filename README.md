@@ -1,7 +1,7 @@
 # safety_-_molecularTargets
 A glance at the current state of the studies connecting molecular targets and drug safety and development.  
 
-## Work in progress, readme will be updated with the references to the tools and materials used. Licensing of the materials should be done in the case of external usage.
+## Work in progress, readme will be updated with the references to the tools and materials used. Licensing of the materials should be done in the case of external usage, all the results obtained on the previous works of https://en.ibmc.msk.ru/departments?view=article&id=26:laboratory-of-structure-function-based-drug-design&catid=10:data and community
 
 Interaction with undesired molecular targets is one of the reasons why (small molecule) drug candidate may fail during development or developed drug could be recalled from the market.
 
