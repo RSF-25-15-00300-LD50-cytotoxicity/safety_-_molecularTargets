@@ -9,7 +9,7 @@ However, the exact list of undesired molecular targets is a hard topic, since it
 
 Thus, in addition to the complex studies aiming to develop such a list or lists (using complex techniques belonging to different approaches) to be applied widely, it is of interest to know what are the molecular targets being studied as potentially safety issues related by the scientiffic community.  
 
-To do that it is possible to simply scan the list of the articles recently (**01.01.2021 - 15.10.2026** in this cse) published in the scientiffic journals dedicated to the studies of drug safety and development (subject categories, https://www.scimagojr.com/)
+To do that it is possible to simply scan the list of the articles recently (**01.01.2021 - 15.10.2026** in this case) published in the scientiffic journals dedicated to the studies of drug safety and development (subject categories, https://www.scimagojr.com/)
 in the search for ones, in which potential connection between the molecular target and certain undesired outcome is unequivocally stated.
 
 
@@ -53,9 +53,29 @@ in the search for ones, in which potential connection between the molecular targ
 
 ## Articles's titles (25356) were obtained via PubMed, the results were downloaded manually and gathered using R and Tidyverse
 
-## The scan of the titles will be conducted manually after sorting, just to get the whole picture of the studies in the field
+## The scan of the titles will be conducted manually after sorting, just to get the whole picture of the studies in the field with safety assessement emphasized
 
 Articles' titles should be arranged for the ease of the scanning and it is a task of its own.
+
+Previous work with assays' descriptions from ChEMBL has shown that UMAP may be used to arrange short texts in a convinient way to some extent, latter studies shown that such convinence could be, probably, improved further [Pogodin, P. V. (2025). Local and global data structure preservation in dimensionality reduction: a case study of the UMAP algorithm. In New horizons of applied mathematics (Vol. 2, pp. 105-107).].
+
+The question at this point is how to describe the articles' titles in computer.
+
+The main idea at this point is to use both topological character-based descriptors similar to MNA-descriptors developed previously to represent chemical compounds [Filimonov, D., Poroikov, V., Borodina, Y., & Gloriozova, T. (1999). Chemical similarity assessment through multilevel neighborhoods of atoms: definition and comparison with the other descriptors. Journal of chemical information and computer sciences, 39(4), 666-670.] and list of entities present both in articles' titles and biomedical ontologies, which belong to the important topics in the field of biomedicine.
+
+Such an approach will allow to consider both simple similarity of the articles' titles being studied and similarity of the lists of topics being reflected in these titles. Also, the latter will allow to immediately locate the most of the articles related to the topic of preclinical safety assessement, which is of interest in this study.
+
+**NB:**
+
+- This work is not intended to represent comprehensive study of the text descriptors, thus, which are known to the author will be used.
+
+- Unicode characters (https://en.wikipedia.org/wiki/Unicode) are widely used in the scientiffic writing, and still their processing is somewhat problematic when different tools are applied in combination, despite the fact that these tools hadle Unicode character well. Thus and because full automation of the processing is not the goal here, Unicode characters will be omitted from the analysis, despite the fact it could have great influence on the results of more detailed studies, for example: p38α turns into p38, which are totally different proteins.
+
+## Overview of the articles' titles
+
+At this point it is important to assess the distribution of article titles' lengthes (number of characters and number of words) and lengthes of the words constituiting them, since it will provides some insights into the optimal lengthes of descriptors to study further.
+
+- 25355 articles' titles were loaded into R
 
 Probably it will be better to start with the analysis of words among those (~47015) constituting titles (preliminary results obtained using (topic) dictionaries from Wikipedia and ChEMBL are not fully satisfactory, this is not the problem of the approach definately, but rather consequence of my skill level with regards to this particular problem). The plan is as follows:
 
