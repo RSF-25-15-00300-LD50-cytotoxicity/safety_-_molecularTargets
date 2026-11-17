@@ -81,6 +81,8 @@ At this point it is important to assess the distribution of article titles' leng
 
 ![**Figure 1.** Distribution of article titles' lengthes.](1__length_distr.png)
 
+From Figure 1 it could be seen that there are articles titles having unusually low count of words (1 word) and characters, these titles are: "Correction", "Corrigendum", "ERRATUM", "Erratum", "Preface", "Retraction", "Virushepatitiden".
+
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
 
