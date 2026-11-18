@@ -67,9 +67,9 @@ Such an approach will allow to consider both simple similarity of the articles' 
 
 **NB:**
 
-- This work is not intended to represent comprehensive study of the text descriptors, thus, which are known to the author will be used.
+- This work is not intended to represent comprehensive study of the text descriptors, thus, those, which are known to the author will be used.
 
-- Unicode characters (https://en.wikipedia.org/wiki/Unicode) are widely used in the scientiffic writing, and still their processing is somewhat problematic when different tools are applied in combination, despite the fact that these tools hadle Unicode character well. Thus and because full automation of the processing is not the goal here, Unicode characters will be omitted from the analysis, despite the fact it could have great influence on the results of more detailed studies, for example: p38α turns into p38, which are totally different proteins.
+- Unicode characters (https://en.wikipedia.org/wiki/Unicode) are widely used in the scientiffic writing, and still their processing is somewhat problematic when different tools are applied in combination, despite the fact that these tools hadle Unicode characters well. Thus, and since full automation of the processing is not the goal here, Unicode characters will be omitted from the analysis, despite the fact that it could have great influence on the results of more detailed studies, for example: p38α turns into p38, which are totally different proteins.
 
 ## Overview of the articles' titles
 
@@ -83,6 +83,79 @@ At this point it is important to assess the distribution of article titles' leng
 
 From Figure 1 it could be seen that there are articles titles having unusually low count of words (1 word) and characters, these titles are: "Correction", "Corrigendum", "ERRATUM", "Erratum", "Preface", "Retraction", "Virushepatitiden".
 
+## Labeling titles using various biomedical ontologies
+
+### Notes
+
+EMBL-EBI (The European Molecular Biology **Laboratory**'s European Bioinformatics **Institute**; https://www.ebi.ac.uk/) has multiple services and sources of harmonized auxilliary data aimed to help to deal with the new data of biological experiments and beyond in consistent manner.
+What is important in the context of this work they have **ontologies** ([https://en.wikipedia.org/wiki/Ontology](https://en.wikipedia.org/wiki/Ontology_(information_science))), which can be defined here as **tools being used to describe something applying standardized terminology and relations between terms**, which I see ~ as follows:
+ - There is a story about flower growing and we want to describe it in the way machine can understand
+ - We take ontology of flowers and ontology of growth
+ - We search matched terms from these ontologies in the text
+ - We found name of the flower and, lets say, its color/form/size both in ontologies and text
+ - In flower ontology we find more info about the flower having such a name: it spicies, etc. and what is important a link to the growth ontology for this particular spicies of flower
+ - Using growth ontology for this flower we can find more: its color/form/size at different stages of development
+ - Using simple logic from flower name and its color/form/size and expected color/form/size at different stages of development we can deduce its age
+ - And now we can pass to machine for further processing even more info than was in the original text, however, some of it will be deduced.
+This is exactly what we need to do with articles' titles to find something interesting about preclinical safety asessement being studied in the last 5 years.
+However, such an approach has limitation: a) we can find only those things, which are already in ontology and b) they should be written in the text in the same way as it is done in ontlogy; c) some info will be deduced: it will describe not the real text at hand but this text in the context of logic coded in the ontology being used.
+It is possible to mitigate these limitations in this task:
+   a) we can re-check the text with labeled words and add smth manually - it will be much easier than deal with the totally unlabeled text (approach has its own limitations, but it is needed to stop doing things at some point)
+   b) EBI's OLS services use learned embeddings to represent terms
+   c) in this task not so important limitation, since the results will be re-checked to mitigate a) (no full automation in this task).
+
+On the technical side: OLS has API (automated programming access), thus it is possible to query it via the Internet:
+https://www.ebi.ac.uk/ols4/api-docs
+Responsible usage of API is the key, resources are always limited.
+
+Intial labeling using EBI's text tager' API, see the 1-2__tagTitles__Rcode.R in this repo.
+At the first glance the results are promising more than 150k matched terms were found, about 1.5k of them are from the txpo ontology, which describes toxic processes.
+However, there are some limitations: Unicode. Both R and Text Tagger get UTF characters right, so the problem is somewhere in between: postions of the percieved terms are different while using R and Text Tagger (probably R and Text Tagger count symbols / characters using different rules). It is problematic for the task, so I switched to ASCII. Such an approach has its own problems: for example, p38α turns into p38, which are totally different proteins. Fortunately, it is not the task here to get the right protein, the task is to get label, that this word probably describes protein, so, for now it is OK.
+Another difficulty is matching short words in text to longer terms from ontologies, even using learned embedding there is no 100% guarantee that the match will be correct.
+
+### Results
+
+Quered ontologies and corresponding numbers of matches are given in Table 1.
+
+Table 1. Ontologies and corresponding numbers of matches
+
+| Ontology    	| Number of mathces |
+| ------------- | ----------------- |
+| ncit          | 90025             |
+| mesh          | 19497             |
+| chebi         | 11213             |
+| bao           | 6977              |
+| efo           | 5288              |
+| ncbitaxon     | 2576              |
+| bto           | 1873              |
+| ms            | 1734              |
+| mi            | 1658              |
+| txpo          | 1532              |
+| obi           | 1498              |
+| mondo         | 1402              |
+| xco           | 1186              |
+| cdao          | 888               |
+| vo            | 810               |
+| cl            | 793               |
+| exo           | 772               |
+| chmo          | 752               |
+| xlmod         | 646               |
+| aio           | 501               |
+| oae           | 364               |
+| vario         | 191               |
+| wikipathways	| 184               |
+| dron          | 159               |
+| dideo         | 139               |
+| cmpo          | 121               |
+| aeo           | 100               |
+| symp          | 88                |
+| mod           | 62                |
+| mmo           | 54                |
+| bmont         | 42                |
+| ogms          | 20                |
+| clo           | 18                |
+| phipo         | 4                 |
+| upheno        | 4                 |
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
 
