@@ -115,11 +115,11 @@ Another difficulty is matching short words in text to longer terms from ontologi
 
 ### Results
 
-Quered ontologies and corresponding numbers of matches are given in Table 1.
+Queried ontologies and corresponding numbers of matches are given in Table 1.
 
 Table 1. Ontologies and corresponding numbers of matches
 
-| Ontology    	| Number of mathces |
+| Ontology    	 | Number of mathces |
 | ------------- | ----------------- |
 | ncit          | 90025             |
 | mesh          | 19497             |
@@ -143,7 +143,7 @@ Table 1. Ontologies and corresponding numbers of matches
 | aio           | 501               |
 | oae           | 364               |
 | vario         | 191               |
-| wikipathways	| 184               |
+| wikipathways	 | 184               |
 | dron          | 159               |
 | dideo         | 139               |
 | cmpo          | 121               |
