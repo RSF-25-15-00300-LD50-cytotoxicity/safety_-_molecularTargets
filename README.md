@@ -117,7 +117,7 @@ Another difficulty is matching short words in text to longer terms from ontologi
 
 Queried ontologies and corresponding numbers of matches are given in Table 1.
 
-Table 1. Ontologies and corresponding numbers of matches
+**Table 1.** Ontologies and corresponding numbers of matches
 
 | Ontology    	 | Number of mathces |
 | ------------- | ----------------- |
