@@ -115,7 +115,7 @@ Another difficulty is matching short words in text to longer terms from ontologi
 
 ### Results
 
-Queried ontologies and corresponding numbers of matches are given in Table 1.
+Queried ontologies and corresponding numbers of matches are given in **Table 1**.
 
 **Table 1.** Ontologies and corresponding numbers of matches
 
@@ -156,6 +156,8 @@ Queried ontologies and corresponding numbers of matches are given in Table 1.
 | clo           | 18                |
 | phipo         | 4                 |
 | upheno        | 4                 |
+
+One major outcome of the labeling is that all matches could be divided into exact and partial mathces. Partial matches should and were evaluated manually for their eligibility (see partial_matches__categorized.tsv), exact matches were categorized further (see exact_matches__categorized.tsv).
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
 
