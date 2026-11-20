@@ -245,7 +245,10 @@ Then, these matches were mapped back to the ontologies, some summarization is gi
 | tumor growth	              | 20                        |
 | G-Protein Coupled Receptor	| 19                        |
 
-From the Tables 3 and 4 it could be seen that in the last 5 years of special interest for drug discovery and safety are general and biomedicine, chemistry, different aspects of experiments and measurements and comparisons, cells, tissues, organisms, including pathogenic ones, standards, diseases and symptoms, vaccines and, of cause toxicity, and adverse events, mass-spectrometry and biomarkers. Quite often, among other targets, G-Protein Coupled Receptors and histone deacytylases are being studied probably towards their ability to affect some signaling pathways, which may or may not be associated with such events as mitochondrial dysfunction and / or tumor growth. 
+From Tables 3 and 4 it could be seen that in the last 5 years of special interest for drug discovery and safety assessment are general and biomedicine, chemistry, different aspects of experiments and measurements and comparisons, cells, tissues, organisms, including pathogenic ones, standards, diseases and symptoms, vaccines and, of cause toxicity, and adverse events, mass-spectrometry and biomarkers. Quite often, among other targets, G-Protein Coupled Receptors and histone deacytylases are being studied probably towards their ability to affect some signaling pathways, which may or may not be associated with such events as mitochondrial dysfunction and / or tumor growth.
+
+All in all, I'd say that such a picture looks consistent, which is a good sign for further analysis.
+All the matches, consider OK at this stage, are given in **labelsMapped_back.tsv**.
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
 
