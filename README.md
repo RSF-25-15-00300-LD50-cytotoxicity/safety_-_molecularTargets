@@ -172,7 +172,7 @@ One major outcome of the labeling is that all the matches could be divided into 
    - Cause: any word, which could describe the causal relationship.
  - Considering the large number of cases it was decided to check again the partial matches and to simplify the labeling scheme.
 
-The results are following: ~13k matched from various ontologies were additionally labeled, these labels will be used to describe the articles' titles for further investigation. Number of distinct labels is given in Table 2, mathces are given in **matches__gathered.tsv**.
+The results are following: ~13k matched terms (1 term could be found in multiple titles) from various ontologies were additionally labeled, these labels will be used to describe the articles' titles for further investigation. Number of distinct labels is given in Table 2, mathces are given in **matches__gathered.tsv**.
 
 **Table 2.** Labels and corresponding numbers of matches
 | Ontology    	    | Number of mathces |
@@ -184,7 +184,7 @@ The results are following: ~13k matched from various ontologies were additionall
 | math_biased      | 25                |
 | cause_biased     | 20                |
 
-Then, these matches were mapped back to the ontologies, some summarization is given in **Table 3**.
+Then, these matches were mapped back to the ontologies, some summarization is given in **Tables 3 and 4**.
 
 **Table 3.** Ontologies, which entities were found in the articles' titles
 | Ontology    	     | Number of entities found | Topic          | Link                                                |
@@ -224,6 +224,26 @@ Then, these matches were mapped back to the ontologies, some summarization is gi
 | clo	              | 18                       | cells          | http://obofoundry.org/ontology/clo.html             |
 | upheno	           | 3                        | phenotypes     | https://github.com/obophenotype/upheno              |                  
 | phipo	            | 1                        | pathogens      | https://bioportal.bioontology.org/ontologies/PHIPO  |
+
+
+**Table 4.** Top 15 most frequent entities from TXPO ontology (toxic processes) found in the articles' titles.
+| Entity    	                | Number of entities found  |
+|----------------------------|---------------------------|
+| signaling	                 | 210                       |
+| signaling pathway	         | 174                       |
+| enhancing	                 | 138                       |
+| chronic	                   | 116                       |
+| improving	                 | 89                        |
+| activating	                | 84                        |
+| combining	                 | 57                        |
+| receiving	                 | 42                        |
+| mitochondrial dysfunction	 | 36                        |   
+| preventing	                | 30                        |
+| histone deacetylase	       | 25                        |
+| state	                     | 24                        |
+| inflammatory response	     | 20                        |
+| tumor growth	              | 20                        |
+| G-Protein Coupled Receptor	| 19                        |
 
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
