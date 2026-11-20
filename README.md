@@ -172,7 +172,7 @@ One major outcome of the labeling is that all the matches could be divided into 
    - Cause: any word, which could describe the causal relationship.
  - Considering the large number of cases it was decided to check again the partial matches and to simplify the labeling scheme.
 
-The results are following: ~13k matches were labeled, these labels will be used to describe the articles' titles for further investigation. Number of distinct labels is given in Table 2, mathces are given in **matches__gathered.tsv**.
+The results are following: ~13k matched from various ontologies were additionally labeled, these labels will be used to describe the articles' titles for further investigation. Number of distinct labels is given in Table 2, mathces are given in **matches__gathered.tsv**.
 
 **Table 2.** Labels and corresponding numbers of matches
 | Ontology    	    | Number of mathces |
