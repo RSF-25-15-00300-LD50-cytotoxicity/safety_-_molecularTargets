@@ -189,7 +189,7 @@ Then, these matches were mapped back to the ontologies, some summarization is gi
 **Table 3.** Ontologies, which entities were found in the articles' titles
 | Ontology    	     | Number of entities found | Topic          | Link                                                |
 | ------------------| -------------------------|----------------|-----------------------------------------------------|
-| ncit	             | 58779                    | cancer         | https://obofoundry.org/ontology/ncit.html           |
+| ncit	             | 58779                    | general        | https://obofoundry.org/ontology/ncit.html           |
 | mesh	             | 19497                    | general        | https://www.ncbi.nlm.nih.gov/mesh/                  |
 | chebi	            | 11154                    | chemistry      | https://www.ebi.ac.uk/ols4/ontologies/chebi         |
 | bao	              | 6977                     | assay          | https://bioassayontology.org/                       |
@@ -226,7 +226,7 @@ Then, these matches were mapped back to the ontologies, some summarization is gi
 | phipo	            | 1                        | pathogens      | https://bioportal.bioontology.org/ontologies/PHIPO  |
 
 
-**Table 4.** Top 15 most frequent entities from TXPO ontology (toxic processes) found in the articles' titles.
+**Table 4.** Top 15 of the most frequent entities from TXPO ontology (toxic processes) in the articles' titles.
 | Entity    	                | Number of entities found  |
 |----------------------------|---------------------------|
 | signaling	                 | 210                       |
@@ -245,6 +245,7 @@ Then, these matches were mapped back to the ontologies, some summarization is gi
 | tumor growth	              | 20                        |
 | G-Protein Coupled Receptor	| 19                        |
 
+From the Tables 3 and 4 it could be seen that in the last 5 years of special interest for drug discovery and safety are general and biomedicine, chemistry, different aspects of experiments and measurements and comparisons, cells, tissues, organisms, including pathogenic ones, standards, diseases and symptoms, vaccines and, of cause toxicity, and adverse events, mass-spectrometry and biomarkers. Quite often, among other targets, G-Protein Coupled Receptors and histone deacytylases are being studied probably towards their ability to affect some signaling pathways, which may or may not be associated with such events as mitochondrial dysfunction and / or tumor growth. 
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
 
