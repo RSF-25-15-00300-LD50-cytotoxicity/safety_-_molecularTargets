@@ -157,10 +157,37 @@ Queried ontologies and corresponding numbers of matches are given in **Table 1**
 | phipo         | 4                 |
 | upheno        | 4                 |
 
-One major outcome of the labeling is that all matches could be divided into exact and partial mathces. Partial matches should and were evaluated manually for their eligibility (see partial_matches__categorized.tsv), exact matches were categorized further (see exact_matches__categorized.tsv).
+One major outcome of the labeling is that all the matches could be divided into exact and partial matches. Partial matches should and were evaluated manually for their eligibility (see partial_matches__categorized.tsv), exact matches were categorized further (see exact_matches__categorized.tsv).
+
+## Manual labeling of the matches from ontologies
+
+- Partial mathces were evaluated and labeled
+- Exact matches were labeled
+   - Entity: word, which could be used in titles of the selected articles to describe some object or subject of interest (target, diseases, drug, etc.).
+   - Action: word, which could be used in titles of the selected articles to describe something which was done by someone / something and may be of interest (e.g.      inhibition or activation of molecular target).
+   - Process: word, which could be used in titles of the selected articles to describe something which sort of flows naturally and may be of interest (e.g. biological process).
+   - Property: characteristic of entity / action / process and may be of interest.
+   - Safety: any word, which could be directly related to the safety concerns.
+   - Certainty: any word, which could describe the degree of certainty in something.
+   - Cause: any word, which could describe the causal relationship.
+ - Considering the large number of cases it was decided to check again the partial matches and to simplify the labeling scheme.
+
+The results are following: ~13k matches were labeled, these labels will be used to describe the articles' titles for further investigation. Number of distinct labels is given in Table 2, mathces are given in **matches__gathered.tsv**.
+
+**Table 2.** Labels and corresponding numbers of matches
+| Ontology    	    | Number of mathces |
+| -----------------| ----------------- |
+| safety_biased    | 162               |
+| activity_biased  | 105               |
+| certainty_biased | 54                |
+| route_biased     | 33                |
+| math_biased      | 25                |
+| cause_biased     | 20                |
+
+
+
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
-
 
 Probably it will be better to start with the analysis of words among those (~47015) constituting titles (preliminary results obtained using (topic) dictionaries from Wikipedia and ChEMBL are not fully satisfactory, this is not the problem of the approach definately, but rather consequence of my skill level with regards to this particular problem). The plan is as follows:
 
