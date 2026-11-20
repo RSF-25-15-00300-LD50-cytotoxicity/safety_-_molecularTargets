@@ -184,7 +184,46 @@ The results are following: ~13k matched from various ontologies were additionall
 | math_biased      | 25                |
 | cause_biased     | 20                |
 
+Then, these matches were mapped back to the ontologies, some summarization is given in **Table 3**.
 
+**Table 3.** Ontologies, which entities were found in the articles' titles
+| Ontology    	     | Number of entities found | Topic          | Link                                                |
+| ------------------| -------------------------|----------------|-----------------------------------------------------|
+| ncit	             | 58779                    | cancer         | https://obofoundry.org/ontology/ncit.html           |
+| mesh	             | 19497                    | general        | https://www.ncbi.nlm.nih.gov/mesh/                  |
+| chebi	            | 11154                    | chemistry      | https://www.ebi.ac.uk/ols4/ontologies/chebi         |
+| bao	              | 6977                     | assay          | https://bioassayontology.org/                       |
+| efo	              | 4970                     | experiments    | https://www.ebi.ac.uk/ols4/ontologies/efo           |
+| ncbitaxon	        | 2554                     | organisms      | https://www.ebi.ac.uk/ols4/ontologies/ncbitaxon     |
+| bto	              | 1873                     | tissues        | https://www.ebi.ac.uk/ols4/ontologies/bto           |
+| ms	               | 1703                     | MS             | https://www.ebi.ac.uk/ols4/ontologies/ms            |
+| txpo	             | 1529                     | toxicity       | https://www.ebi.ac.uk/ols4/ontologies/txpo          |
+| obi	              | 1495                     | biomedicine    | https://obi-ontology.org/                           |
+| mi	               | 1350                     | interactions   | https://www.ebi.ac.uk/ols4/ontologies/mi            |
+| xco	              | 1164                     | experiments    | https://bioportal.bioontology.org/ontologies/XCO    |
+| mondo	            | 1125                     | diseases       | https://mondo.monarchinitiative.org/                |
+| cdao	             | 888                      | comparisons    | https://www.ebi.ac.uk/ols4/ontologies/cdao          |
+| vo	               | 810                      | vaccinses      | https://www.ebi.ac.uk/ols4/ontologies/vo            |
+| exo	              | 772                      | exposure       | https://bioportal.bioontology.org/ontologies/EXO    |
+| chmo	             | 692                      | chemistry      | https://www.ebi.ac.uk/ols4/ontologies/chmo          |
+| cl	               | 691                      | cell           | https://obofoundry.org/ontology/cl.html             |
+| xlmod	            | 641                      | cross-linking  | https://www.ebi.ac.uk/ols4/ontologies/xlmod         | 
+| aio	              | 492                      | AIO            | https://bioportal.bioontology.org/ontologies/AIO    |
+| oae	              | 364                      | adverse events | https://www.ebi.ac.uk/ols4/ontologies/oae           |
+| vario	            | 191                      | variation      | https://variationontology.org/                      |
+| wikipathways	     | 184                      | pathways       | https://vocabularies.wikipathways.org/wp            |
+| dron	             | 159                      | drugs          | https://bioportal.bioontology.org/ontologies/DRON   |
+| dideo	            | 139                      | drugs          | https://bioportal.bioontology.org/ontologies/DIDEO  |
+| aeo	              | 100                      | standards      | https://aeontology.sail-lab.org/                    | 
+| symp	             | 86                       | symptoms       | https://bioportal.bioontology.org/ontologies/SYMP   |
+| cmpo	             | 79                       | cells          | https://www.ebi.ac.uk/ols4/ontologies/cmpo          |
+| bmont	            | 41                       | biomarkers     | https://www.ebi.ac.uk/ols4/ontologies/bmont         |
+| mmo	              | 37                       | measurements   | https://bioportal.bioontology.org/ontologies/MMO    |
+| ogms	             | 20                       | general        | https://www.ebi.ac.uk/ols4/ontologies/ogms          |
+| mod	              | 19                       | meta           | https://www.ebi.ac.uk/ols4/ontologies/mod           |
+| clo	              | 18                       | cells          | http://obofoundry.org/ontology/clo.html             |
+| upheno	           | 3                        | phenotypes     | https://github.com/obophenotype/upheno              |                  
+| phipo	            | 1                        | pathogens      | https://bioportal.bioontology.org/ontologies/PHIPO  |
 
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
