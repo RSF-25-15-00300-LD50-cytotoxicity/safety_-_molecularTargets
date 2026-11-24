@@ -250,6 +250,10 @@ From Tables 3 and 4 it could be seen that in the last 5 years of special interes
 All in all, I'd say that such a picture looks consistent, which is a good sign for the further analysis.
 All the matches, considered OK at this stage, are given in **labelsMapped_back.tsv**.
 
+## Sorting and manual inspection of titles
+
+Considering the obtained results, articles titles, described via manually assigned labels, list of ontologies, letters' triples and words' pairs; were sorted using UMAP procedure and inspected manually to deepen the results given in Tables 3 and 4.
+
 ## The following text corresponds to the earlier attempts and will be reconsidered.
 
 Probably it will be better to start with the analysis of words among those (~47015) constituting titles (preliminary results obtained using (topic) dictionaries from Wikipedia and ChEMBL are not fully satisfactory, this is not the problem of the approach definately, but rather consequence of my skill level with regards to this particular problem). The plan is as follows:
