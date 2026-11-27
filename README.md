@@ -271,7 +271,7 @@ GO-terms in ChEMBL are grouped into 9 levels, where level 0 is the most basic ha
  
 **Table 5.** Intersection of the GO terms from TXPO and molecular functions / biological processes from ChEMBL v36.
 | Preferred name of the process                  |
-+------------------------------------------------+
+--------------------------------------------------
 | DNA binding                                    |
 | protein binding                                |
 | carbohydrate metabolic process                 |
@@ -317,7 +317,7 @@ GO-terms in ChEMBL are grouped into 9 levels, where level 0 is the most basic ha
 | transmembrane transport                        |
 | membrane organization                          |
 | macromolecular complex assembly                |
-+------------------------------------------------+ 
+|------------------------------------------------|
 
 
 ## Sorting and manual inspection of titles
