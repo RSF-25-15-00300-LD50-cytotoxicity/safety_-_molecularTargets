@@ -18,4 +18,4 @@ procs_txpo <- txpo_raw |> filter(str_detect(`Class ID`, "GO")) |>
 
 # Export
 write_tsv(prots_txpo, ".../TXPO_proteins.tsv")
-write_tsv(procs_txpo, ".../TXPO_processes.tsv")
+write_tsv(procs_txpo, ".../TXPO_GO.tsv")
