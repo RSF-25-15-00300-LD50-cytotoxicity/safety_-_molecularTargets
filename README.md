@@ -259,7 +259,66 @@ Fortunately, this ontology also includes list of biological processes, which hap
 It is possible to extract these processes, find molecular entities participating in them in ChEMBL (https://www.ebi.ac.uk/chembl/) along with the associated biological activities of chemical compounds and finally come up with the basic list of molecular targets to create the training set to build a classifier, which will allow to inform researchers about the most probable targets of chemical compound and affected biological processes based on the existing data and classifier's algorithm.
 Overall, TXPO ontology contains 494 GO-terms (https://geneontology.org/), see: TXPO_processes.tsv and moltarg_1_TXPO-prots__Rcode.R.
 At the same time ChEMBL v36 contains only 309 GO-terms, which are selected on the basis of known chemical compounds affecting them.
-Thus, some redudancy of the TXPO data will be excluded, while intersecting TXPO and ChEMBL GO terms.
+Thus, some redudancy of the TXPO data will be mitigated, while intersecting TXPO and ChEMBL GO terms.
+
+GO-terms in ChEMBL are grouped into 9 levels, where level 0 is the most basic having only 3 terms:
+
+- molecular_function
+- cellular_component
+- biological_process
+
+ Only terms biological designated as biological processes and molecular functions at level 0 will be used.
+ 
+**Table 5.** Intersection of the GO terms from TXPO and molecular functions / biological processes from ChEMBL v36.
+| Preferred name of the process                  |
++------------------------------------------------+
+| DNA binding                                    |
+| protein binding                                |
+| carbohydrate metabolic process                 |
+| generation of precursor metabolites and energy |
+| translation                                    |
+| protein folding                                |
+| protein complex assembly                       |
+| proteolysis                                    |
+| cellular amino acid metabolic process          |
+| lipid metabolic process                        |
+| xenobiotic metabolic process                   |
+| transport                                      |
+| nucleocytoplasmic transport                    |
+| autophagy                                      |
+| response to stress                             |
+| mitochondrion organization                     |
+| cytoskeleton organization                      |
+| cell cycle                                     |
+| cell adhesion                                  |
+| metabolic process                              |
+| cell death                                     |
+| cell proliferation                             |
+| lipid binding                                  |
+| catabolic process                              |
+| biosynthetic process                           |
+| vesicle-mediated transport                     |
+| phosphorylation                                |
+| protein processing                             |
+| drug metabolic process                         |
+| cytolysis                                      |
+| cellular component assembly                    |
+| cell differentiation                           |
+| extracellular matrix organization              |
+| methylation                                    |
+| growth                                         |
+| locomotion                                     |
+| homeostatic process                            |
+| positive regulation of apoptotic process       |
+| pigmentation                                   |
+| small molecule metabolic process               |
+| chromosome organization                        |
+| cell division                                  |
+| transmembrane transport                        |
+| membrane organization                          |
+| macromolecular complex assembly                |
++------------------------------------------------+ 
+
 
 ## Sorting and manual inspection of titles
 
