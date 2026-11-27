@@ -208,7 +208,7 @@ Then, these matches were mapped back to the ontologies, some summarization is gi
 | chmo	             | 692                      | chemistry      | https://www.ebi.ac.uk/ols4/ontologies/chmo          |
 | cl	               | 691                      | cell           | https://obofoundry.org/ontology/cl.html             |
 | xlmod	            | 641                      | cross-linking  | https://www.ebi.ac.uk/ols4/ontologies/xlmod         | 
-| aio	              | 492                      | AIO            | https://bioportal.bioontology.org/ontologies/AIO    |
+| aio	              | 492                      | AI             | https://bioportal.bioontology.org/ontologies/AIO    |
 | oae	              | 364                      | adverse events | https://www.ebi.ac.uk/ols4/ontologies/oae           |
 | vario	            | 191                      | variation      | https://variationontology.org/                      |
 | wikipathways	     | 184                      | pathways       | https://vocabularies.wikipathways.org/wp            |
@@ -250,9 +250,20 @@ From Tables 3 and 4 it could be seen that in the last 5 years of special interes
 All in all, I'd say that such a picture looks consistent, which is a good sign for the further analysis.
 All the matches, considered OK at this stage, are given in **labelsMapped_back.tsv**.
 
+## List of molecular targets associated with the drugs' safety issues based on ontologies
+
+So, the main goal here is to come up with the list of molecular targets, which could be useful predictors of drugs's safety issues. At this time it is clear that literature on the topic does not contain single the most correct list of this kind, however, some important novelties could be present there (review is ongoing).
+Thus, it seems to be rational to use the data from established ontologies. And the most appropriate one is Toxic Process Ontology (https://www.ebi.ac.uk/ols4/ontologies/txpo?viewMode=tree&tab=classes). This ontology, among other things, contains genes, proteins and biological processes related to the toxiccity of chemicals based on results obtained mainly via experiments on the cells originating from liver. Cells originating from liver is the widely used In Vitro model, it has limitations as any other model, but thorough and comprehensive studies are rare.
+The list of genes and proteins is long consisting of about 2k entries, but probably is not comprehensive, also, it lacks IDs.
+Fortunately, this ontology also includes list of biological processes, which happens in the cell as consequences or mechanisms of chemicals' toxic effect judjing by the levels of gene products being involved in them.
+It is possible to extract these processes, find molecular entities participating in them in ChEMBL (https://www.ebi.ac.uk/chembl/) along with the associated biological activities of chemical compounds and finally come up with the basic list of molecular targets to create the training set to build a classifier, which will allow to inform researchers about the most probable targets of chemical compound and affected biological processes based on the existing data and classifier's algorithm.
+Overall, TXPO ontology contains 494 GO-terms (https://geneontology.org/), see: TXPO_processes.tsv and moltarg_1_TXPO-prots__Rcode.R.
+At the same time ChEMBL v36 contains only 309 GO-terms, which are selected on the basis of known chemical compounds affecting them.
+Thus, some redudancy of the TXPO data will be excluded, while intersecting TXPO and ChEMBL GO terms.
+
 ## Sorting and manual inspection of titles
 
-Considering the obtained results, articles titles, described via manually assigned labels, list of ontologies, letters' triples and words' pairs; were sorted using UMAP procedure and inspected manually to deepen the results given in Tables 3 and 4.
+Considering the obtained results, articles titles, described via manually assigned labels, list of ontologies, letters' triples and words' pairs; were sorted using UMAP procedure and inspected manually to deepen the results given in Tables 3 and 4 (code provided in 4_2_describeTitles_further__Rcode.R is somewhat problematic, thus, latter).
 
 ## The following text corresponds to the earlier attempts and will be reconsidered.
 
