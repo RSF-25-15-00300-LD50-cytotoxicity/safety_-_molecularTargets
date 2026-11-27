@@ -268,56 +268,58 @@ GO-terms in ChEMBL are grouped into 9 levels, where level 0 is the most basic ha
 - biological_process
 
  Only terms biological designated as biological processes and molecular functions at level 0 will be used.
+ To construct such a list the following SQL-query to the local version of ChEMBL v36 was used:
+
+SELECT pref_name FROM go_classification WHERE (path LIKE 'mol%' OR path LIKE 'bio%') AND go_id IN ('GO:0016051', ..., 'GO:0001732') ORDER BY pref_name ASC;
  
 **Table 5.** Intersection of the GO terms from TXPO and molecular functions / biological processes from ChEMBL v36.
-| Preferred name of the process                  |
+| pref_name                                      |
 |------------------------------------------------|
-| DNA binding                                    |
-| protein binding                                |
-| carbohydrate metabolic process                 |
-| generation of precursor metabolites and energy |
-| translation                                    |
-| protein folding                                |
-| protein complex assembly                       |
-| proteolysis                                    |
-| cellular amino acid metabolic process          |
-| lipid metabolic process                        |
-| xenobiotic metabolic process                   |
-| transport                                      |
-| nucleocytoplasmic transport                    |
 | autophagy                                      |
-| response to stress                             |
-| mitochondrion organization                     |
-| cytoskeleton organization                      |
-| cell cycle                                     |
-| cell adhesion                                  |
-| metabolic process                              |
-| cell death                                     |
-| cell proliferation                             |
-| lipid binding                                  |
-| catabolic process                              |
 | biosynthetic process                           |
-| vesicle-mediated transport                     |
-| phosphorylation                                |
-| protein processing                             |
-| drug metabolic process                         |
-| cytolysis                                      |
-| cellular component assembly                    |
+| carbohydrate metabolic process                 |
+| catabolic process                              |
+| cell adhesion                                  |
+| cell cycle                                     |
+| cell death                                     |
 | cell differentiation                           |
-| extracellular matrix organization              |
-| methylation                                    |
-| growth                                         |
-| locomotion                                     |
-| homeostatic process                            |
-| positive regulation of apoptotic process       |
-| pigmentation                                   |
-| small molecule metabolic process               |
-| chromosome organization                        |
 | cell division                                  |
-| transmembrane transport                        |
-| membrane organization                          |
+| cell proliferation                             |
+| cellular amino acid metabolic process          |
+| cellular component assembly                    |
+| chromosome organization                        |
+| cytolysis                                      |
+| cytoskeleton organization                      |
+| DNA binding                                    |
+| drug metabolic process                         |
+| extracellular matrix organization              |
+| generation of precursor metabolites and energy |
+| growth                                         |
+| homeostatic process                            |
+| lipid binding                                  |
+| lipid metabolic process                        |
+| locomotion                                     |
 | macromolecular complex assembly                |
-|------------------------------------------------|
+| membrane organization                          |
+| metabolic process                              |
+| methylation                                    |
+| mitochondrion organization                     |
+| nucleocytoplasmic transport                    |
+| phosphorylation                                |
+| pigmentation                                   |
+| positive regulation of apoptotic process       |
+| protein binding                                |
+| protein complex assembly                       |
+| protein folding                                |
+| protein processing                             |
+| proteolysis                                    |
+| response to stress                             |
+| small molecule metabolic process               |
+| translation                                    |
+| transmembrane transport                        |
+| transport                                      |
+| vesicle-mediated transport                     |
+| xenobiotic metabolic process                   |
 
 
 ## Sorting and manual inspection of titles
