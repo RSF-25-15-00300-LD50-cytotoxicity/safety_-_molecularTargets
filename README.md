@@ -270,58 +270,64 @@ GO-terms in ChEMBL are grouped into 9 levels, where level 0 is the most basic ha
  Only terms biological designated as biological processes and molecular functions at level 0 will be used.
  To construct such a list the following SQL-query to the local version of ChEMBL v36 was used:
 
-SELECT pref_name FROM go_classification WHERE (path LIKE 'mol%' OR path LIKE 'bio%') AND go_id IN ('GO:0016051', ..., 'GO:0001732') ORDER BY pref_name ASC;
+SELECT DISTINCT(pref_name), go_id FROM go_classification WHERE (path LIKE 'mol%' OR path LIKE 'bio%') AND go_id IN ('GO:0016051', ..., 'GO:0001732') ORDER BY pref_name ASC;
  
 **Table 5.** Intersection of the GO terms from TXPO and molecular functions / biological processes from ChEMBL v36.
-| pref_name                                      |
-|------------------------------------------------|
-| autophagy                                      |
-| biosynthetic process                           |
-| carbohydrate metabolic process                 |
-| catabolic process                              |
-| cell adhesion                                  |
-| cell cycle                                     |
-| cell death                                     |
-| cell differentiation                           |
-| cell division                                  |
-| cell proliferation                             |
-| cellular amino acid metabolic process          |
-| cellular component assembly                    |
-| chromosome organization                        |
-| cytolysis                                      |
-| cytoskeleton organization                      |
-| DNA binding                                    |
-| drug metabolic process                         |
-| extracellular matrix organization              |
-| generation of precursor metabolites and energy |
-| growth                                         |
-| homeostatic process                            |
-| lipid binding                                  |
-| lipid metabolic process                        |
-| locomotion                                     |
-| macromolecular complex assembly                |
-| membrane organization                          |
-| metabolic process                              |
-| methylation                                    |
-| mitochondrion organization                     |
-| nucleocytoplasmic transport                    |
-| phosphorylation                                |
-| pigmentation                                   |
-| positive regulation of apoptotic process       |
-| protein binding                                |
-| protein complex assembly                       |
-| protein folding                                |
-| protein processing                             |
-| proteolysis                                    |
-| response to stress                             |
-| small molecule metabolic process               |
-| translation                                    |
-| transmembrane transport                        |
-| transport                                      |
-| vesicle-mediated transport                     |
-| xenobiotic metabolic process                   |
+| pref_name                                      | go_id      |
+|------------------------------------------------|------------|
+| autophagy                                      | GO:0006914 |
+| biosynthetic process                           | GO:0009058 |
+| carbohydrate metabolic process                 | GO:0005975 |
+| catabolic process                              | GO:0009056 |
+| cell adhesion                                  | GO:0007155 |
+| cell cycle                                     | GO:0007049 |
+| cell death                                     | GO:0008219 |
+| cell differentiation                           | GO:0030154 |
+| cell division                                  | GO:0051301 |
+| cell proliferation                             | GO:0008283 |
+| cellular amino acid metabolic process          | GO:0006520 |
+| cellular component assembly                    | GO:0022607 |
+| chromosome organization                        | GO:0051276 |
+| cytolysis                                      | GO:0019835 |
+| cytoskeleton organization                      | GO:0007010 |
+| DNA binding                                    | GO:0003677 |
+| drug metabolic process                         | GO:0017144 |
+| extracellular matrix organization              | GO:0030198 |
+| generation of precursor metabolites and energy | GO:0006091 |
+| growth                                         | GO:0040007 |
+| homeostatic process                            | GO:0042592 |
+| lipid binding                                  | GO:0008289 |
+| lipid metabolic process                        | GO:0006629 |
+| locomotion                                     | GO:0040011 |
+| macromolecular complex assembly                | GO:0065003 |
+| membrane organization                          | GO:0061024 |
+| metabolic process                              | GO:0008152 |
+| methylation                                    | GO:0032259 |
+| mitochondrion organization                     | GO:0007005 |
+| nucleocytoplasmic transport                    | GO:0006913 |
+| phosphorylation                                | GO:0016310 |
+| pigmentation                                   | GO:0043473 |
+| positive regulation of apoptotic process       | GO:0043065 |
+| protein binding                                | GO:0005515 |
+| protein complex assembly                       | GO:0006461 |
+| protein folding                                | GO:0006457 |
+| protein processing                             | GO:0016485 |
+| proteolysis                                    | GO:0006508 |
+| response to stress                             | GO:0006950 |
+| small molecule metabolic process               | GO:0044281 |
+| translation                                    | GO:0006412 |
+| transmembrane transport                        | GO:0055085 |
+| transport                                      | GO:0006810 |
+| vesicle-mediated transport                     | GO:0016192 |
+| xenobiotic metabolic process                   | GO:0006805 |
 
 Notably, such process as 'response to toxic substance' is abscent from the Table 5, which is based on TXPO. This process will be introduced manually, it seems to be reasonable.
+
+Next step is to get molecular targets themeselves from ChEMBL. Molecular targets consist out of components (one or many) and these components may be related related to GO-terms from Table 5. Thus, the idea is as follows:
+
+1. Get IDs of the components related to the terms from Table 5 using Table component_go
+2. Get IDs of the targets consisted of the selected components using Table target_components
+3. Get preferred names of the targets, their types, etc. using table target_dictionary
 
 
 ## Sorting and manual inspection of titles
