@@ -321,6 +321,8 @@ SELECT pref_name FROM go_classification WHERE (path LIKE 'mol%' OR path LIKE 'bi
 | vesicle-mediated transport                     |
 | xenobiotic metabolic process                   |
 
+Notably, such process as 'response to toxic substance' is abscent from the Table 5, which is based on TXPO. This process will be introduced manually, it seems to be reasonable.
+
 
 ## Sorting and manual inspection of titles
 
