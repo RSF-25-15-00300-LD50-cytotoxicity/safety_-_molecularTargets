@@ -329,6 +329,19 @@ Next step is to get molecular targets themeselves from ChEMBL. Molecular targets
 2. Get IDs of the targets consisted of the selected components using Table target_components
 3. Get preferred names of the targets, their types, etc. using table target_dictionary
 
+SQL-query is as follows:
+SELECT t.chembl_id as chembl_id, t.pref_name as pref_name, t.target_type as type, t.organism as organism
+  FROM target_dictionary as t JOIN
+		 target_components tc JOIN
+		 component_go cg
+  WHERE t.tid = tc.tid AND
+		tc.component_id = cg.component_id AND
+		cg.go_id IN ('GO:0009636', ..., 'GO:0006805')
+		GROUP BY chembl_id
+		ORDER BY pref_name, organism ASC INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/txpo_&_tox_targets.tsv';
+
+List of ~12k targets was extracted from ChEMBL v36, see: txpo_&_tox_targets.tsv.
+These targets are from different organisms and belong to different types, thus additional filtering will be conducted. 
 
 ## Sorting and manual inspection of titles
 
